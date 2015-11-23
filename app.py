@@ -1,8 +1,12 @@
 import os
+import sys
 import time
 from flask import Flask, request, jsonify
 import json
+import logging
+
 app = Flask(__name__)
+app.logger.setLevel(logging.DEBUG)  # set the desired logging level here
 
 
 @app.route("/")
@@ -14,6 +18,8 @@ def index():
 def videos_process():
     t0 = time.clock()
     content = request.get_json(silent=True)
+    app.logger.debug('A value for debugging')
+    app.logger.warning('A value for warning')
     print(content.get('id').get('b'))
     print(time.clock() - t0)
     list = [
