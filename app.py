@@ -30,14 +30,12 @@ def videos_process():
     # jsonify will do for us all the work, returning the
     # previous data structure in JSON
     # return jsonify(results = list)
-    #print(time.time() - t0, 'seconds', caras)
-    print(caras)
+    print(time.time() - t0, 'seconds', caras)
     sys.stdout.flush()
 
     # return json.dumps(result)
-    ##retval = jsonify({'results': {'caras': caras}})
-    retval = {'a':'a'}
-    return json.dumps(caras)
+    retval = jsonify({'results': {'caras': caras}})
+    return retval
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
