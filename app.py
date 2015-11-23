@@ -1,4 +1,5 @@
 import os
+import time
 from flask import Flask, request, jsonify
 import json
 app = Flask(__name__)
@@ -11,8 +12,10 @@ def index():
 
 @app.route('/api/videos/process', methods=['POST'])
 def videos_process():
+    t0 = time.clock()
     content = request.get_json(silent=True)
     print(content.get('id').get('b'))
+    print(time.clock() - t0)
     list = [
         {'param': 'foo', 'val': 2},
         {'param': 'bar', 'val': 10}
