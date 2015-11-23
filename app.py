@@ -6,7 +6,7 @@ import json
 import logging
 
 app = Flask(__name__)
-# app.logger.setLevel(logging.DEBUG)  # set the desired logging level here
+app.logger.setLevel(logging.DEBUG)  # set the desired logging level here
 
 
 @app.route("/")
