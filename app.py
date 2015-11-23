@@ -17,7 +17,7 @@ def index():
 @app.route('/api/videos/process', methods=['POST'])
 def videos_process():
     t0 = time.time()
-    content = request.get_json(silent=True)
+    content = request.get_json(silent=True).get('content')
     # app.logger.debug('A value for debugging')
     # app.logger.warning('A value for warning')
     # sys.stdout.write('Another message')
@@ -28,10 +28,10 @@ def videos_process():
     # jsonify will do for us all the work, returning the
     # previous data structure in JSON
     # return jsonify(results = list)
-    print(time.time() - t0, 'seconds')
+    print(time.time() - t0, 'seconds', result, content)
     sys.stdout.flush()
 
-    #return json.dumps(result)
+    # return json.dumps(result)
     return jsonify({'caras': result})
 
 if __name__ == "__main__":
