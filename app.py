@@ -26,7 +26,7 @@ def videos_process():
     #print(time.clock() - t0, "seconds wall time")
 
     caras = video.process(content)
-    caras = [{'y': 161, 'x': 83, 'height': 279, 'width': 210}]
+    # caras = [{'y': 161, 'x': 83, 'height': 279, 'width': 210}]
     # jsonify will do for us all the work, returning the
     # previous data structure in JSON
     # return jsonify(results = list)
