@@ -63,6 +63,6 @@ def process(content):
         #print('image ' + str(i) + ' ' + str(len(good)))
         # print(len(matches))
         if(len(matches) >= MATCH_THRESHOLD):
-            good.append({'x': x, 'y': y, 'width': w, 'height': h})
+            good.append({'x': x*1, 'y': y*1, 'width': w*1, 'height': h*1})
 
     return good
