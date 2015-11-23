@@ -26,6 +26,7 @@ def videos_process():
     #print(time.clock() - t0, "seconds wall time")
 
     caras = video.process(content)
+    caras = [{'y': 161, 'x': 83, 'height': 279, 'width': 210}]
     # jsonify will do for us all the work, returning the
     # previous data structure in JSON
     # return jsonify(results = list)
@@ -33,7 +34,8 @@ def videos_process():
     sys.stdout.flush()
 
     # return json.dumps(result)
-    return jsonify({'results': {'caras': caras}})
+    retval = jsonify({'results': {'caras': caras}})
+    return retval
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
