@@ -23,6 +23,7 @@ def videos_process():
     # sys.stdout.write('Another message')
     print(content.get('id').get('b'))
     print(time.time() - t0, "seconds wall time")
+    sys.stdout.flush()
     list = [
         {'param': 'foo', 'val': 2},
         {'param': 'bar', 'val': 10}
