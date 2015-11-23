@@ -29,7 +29,7 @@ def videos_process():
     # jsonify will do for us all the work, returning the
     # previous data structure in JSON
     # return jsonify(results = list)
-    print(time.time() - t0, 'seconds', result, content)
+    print(time.time() - t0, 'seconds', result)
     sys.stdout.flush()
 
     # return json.dumps(result)
