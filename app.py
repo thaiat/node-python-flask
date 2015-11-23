@@ -18,6 +18,7 @@ def index():
 def videos_process():
     t0 = time.time()
     content = request.get_json(silent=True).get('content')
+    #content = json.get('content')
     # app.logger.debug('A value for debugging')
     # app.logger.warning('A value for warning')
     # sys.stdout.write('Another message')
