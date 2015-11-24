@@ -3,6 +3,7 @@ import cStringIO
 from PIL import Image
 import numpy as np
 import cv2
+from imutils.object_detection import non_max_suppression
 
 IMAGE_SIZE = 200.0
 IMAGE_PADDING = 10
@@ -28,15 +29,19 @@ def process(content):
 
     gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 
-    faces = cascade.detectMultiScale(image, 1.03, 20)
+    faces = cascade.detectMultiScale(image, 1.01, 20, minSize=(10, 10))
+
     if(len(faces) <= 0):
         return []
 
-    good = []
-    for (x, y, w, h) in faces:
+    rects = np.array([[x, y, x + w, y + h] for (x, y, w, h) in faces])
+    pick = non_max_suppression(rects, probs=None, overlapThresh=0.65)
 
-        obj = gray[(y-IMAGE_PADDING):(y+h+IMAGE_PADDING),
-                   (x-IMAGE_PADDING):(x+w+IMAGE_PADDING)]
+    good = []
+    for (x, y, x2, y2) in pick:
+
+        obj = gray[(y-IMAGE_PADDING):(y2+IMAGE_PADDING),
+                   (x-IMAGE_PADDING):(x2+IMAGE_PADDING)]
         if obj.shape[0] == 0 or obj.shape[1] == 0:
             continue
         ratio = IMAGE_SIZE/obj.shape[1]
@@ -50,6 +55,15 @@ def process(content):
         matches = bf.match(des_r, des_o)
 
         if(len(matches) >= MATCH_THRESHOLD):
-            good.append({'x': x*1, 'y': y*1, 'width': w*1, 'height': h*1})
+            good.append(
+                {'x': x*1, 'y': y*1, 'width': (x2-x)*1, 'height': (y2-y)*1})
+
+    # for f in good:
+    #    cv2.rectangle(
+    #        image,
+    #        (f.get('x'), f.get('y')),
+    #        (f.get('width'), f.get('height')),
+    #        (0, 255, 0), 6)
+    #    cv2.imwrite('image.jpg', image)
 
     return good

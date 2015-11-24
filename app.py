@@ -27,7 +27,7 @@ def videos_process():
     caras = video.process(content)
 
     app.logger.info('[INFO] Detection: {0}ms, {1}'.format(
-        (datetime.datetime.now() - start).total_seconds()*100, caras))
+        (datetime.datetime.now() - start).total_seconds()*1000, caras))
 
     # return json.dumps(result)
     retval = jsonify({'results': {'caras': caras}})
