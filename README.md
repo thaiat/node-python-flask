@@ -13,5 +13,9 @@ heroku buildpacks:add --index 2   https://github.com/diogojc/heroku-buildpack-py
 
 ## Procfile
 ```
-gunicorn --log-file=- app:app
+web: gunicorn --log-file=- app:app
+```
+or
+```
+web: python app.py
 ```
