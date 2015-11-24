@@ -1,7 +1,7 @@
 import numpy as np
 import sys
 
-from imutils import paths
+from imutils import convenience
 import cv2
 
 # import any special Python 2.7 packages
@@ -13,17 +13,6 @@ elif sys.version_info.major == 3:
     from urllib.request import urlopen
 
 
-def url_to_image(url, readFlag=cv2.IMREAD_COLOR):
-    # download the image, convert it to a NumPy array, and then read
-    # it into OpenCV format
-    resp = urlopen(url)
-    image = np.asarray(bytearray(resp.read()), dtype="uint8")
-    image = cv2.imdecode(image, readFlag)
-
-    # return the image
-    return image
-
-
 def variance_of_laplacian(image):
     # compute the Laplacian of the image and then return the focus
     # measure, which is simply the variance of the Laplacian
@@ -32,7 +21,8 @@ def variance_of_laplacian(image):
 
 def blur_analysis(url, threshold):
     result = []
-    image = url_to_image(url, readFlag=cv2.IMREAD_COLOR)
+    image = convenience.url_to_image(url, readFlag=cv2.IMREAD_COLOR)
+    # image = cv2.imread('./images/image-test/10.jpg')
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     fm = variance_of_laplacian(gray)
     text = "Not Blurry"

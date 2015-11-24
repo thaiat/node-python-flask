@@ -1,9 +1,7 @@
-import re
-import cStringIO
-from PIL import Image
 import numpy as np
 import cv2
 from imutils.object_detection import non_max_suppression
+import utils
 
 IMAGE_SIZE = 200.0
 IMAGE_PADDING = 10
@@ -22,10 +20,8 @@ kp_r, des_r = orb.detectAndCompute(reference, None)
 def process(content):
     if not isinstance(content, unicode):
         return []
-    image_data = re.sub('^data:image/.+;base64,', '', content).decode('base64')
-    image = Image.open(cStringIO.StringIO(image_data))
-    image = cv2.cvtColor(np.array(image), 2)
-    # cv2.imwrite('image.jpg', image)
+
+    image = utils.b64_to_image(content)
 
     gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 

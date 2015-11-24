@@ -43,9 +43,8 @@ def photos_process():
     # if(jsonBody.get('path')):
     #     path = jsonBody.get('path')
     url = jsonBody.get('url')
-    threshold = jsonBody.get('threshold')
 
-    res = photo.blur_analysis(url, threshold)
+    res = photo.blur_analysis(url, 250)
 
     app.logger.info('[INFO] Blur: {0}ms, {1}'.format(
         (datetime.datetime.now() - start).total_seconds()*1000, url))
