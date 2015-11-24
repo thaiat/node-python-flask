@@ -43,6 +43,7 @@ def photos_process():
     # if(jsonBody.get('path')):
     #     path = jsonBody.get('path')
     content = jsonBody.get('content')
+    # the value of content can either be a url or a b64
 
     res = photo.blur_analysis(content, 250)
 
