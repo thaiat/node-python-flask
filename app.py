@@ -42,12 +42,12 @@ def photos_process():
 
     # if(jsonBody.get('path')):
     #     path = jsonBody.get('path')
-    url = jsonBody.get('url')
+    content = jsonBody.get('content')
 
-    res = photo.blur_analysis(url, 250)
+    res = photo.blur_analysis(content, 250)
 
     app.logger.info('[INFO] Blur: {0}ms, {1}'.format(
-        (datetime.datetime.now() - start).total_seconds()*1000, url))
+        (datetime.datetime.now() - start).total_seconds()*1000, content))
 
     retval = jsonify({'data': res})
     return retval

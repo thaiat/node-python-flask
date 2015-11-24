@@ -1,16 +1,6 @@
-import numpy as np
-import sys
-
 from imutils import convenience
 import cv2
-
-# import any special Python 2.7 packages
-if sys.version_info.major == 2:
-    from urllib import urlopen
-
-# import any special Python 3 packages
-elif sys.version_info.major == 3:
-    from urllib.request import urlopen
+import utils
 
 
 def variance_of_laplacian(image):
@@ -19,10 +9,18 @@ def variance_of_laplacian(image):
     return cv2.Laplacian(image, cv2.CV_64F).var()
 
 
-def blur_analysis(url, threshold):
+def blur_analysis(content, threshold):
+    if not isinstance(content, unicode):
+        return []
+
     result = []
-    image = convenience.url_to_image(url, readFlag=cv2.IMREAD_COLOR)
-    # image = cv2.imread('./images/image-test/10.jpg')
+
+    if content[:4] == 'http':
+        image = convenience.url_to_image(content, readFlag=cv2.IMREAD_COLOR)
+        # image = cv2.imread('./images/image-test/10.jpg')
+    else:
+        image = utils.b64_to_image(content)
+
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     fm = variance_of_laplacian(gray)
     text = "Not Blurry"
