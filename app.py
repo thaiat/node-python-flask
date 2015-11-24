@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify
 import logging
 import video
 import datetime
+import photo
 
 
 app = Flask(__name__)
@@ -32,6 +33,26 @@ def videos_process():
     # return json.dumps(result)
     retval = jsonify({'results': {'caras': caras}})
     return retval
+
+
+@app.route('/api/photos/blur', methods=['POST'])
+def photos_process():
+    start = datetime.datetime.now()
+    jsonBody = request.get_json(silent=True)
+
+    # if(jsonBody.get('path')):
+    #     path = jsonBody.get('path')
+    url = jsonBody.get('url')
+    threshold = jsonBody.get('threshold')
+
+    res = photo.blur_analysis(url, threshold)
+
+    app.logger.info('[INFO] Blur: {0}ms, {1}'.format(
+        (datetime.datetime.now() - start).total_seconds()*1000, url))
+
+    retval = jsonify({'data': res})
+    return retval
+
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
