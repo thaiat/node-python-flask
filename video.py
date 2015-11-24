@@ -29,7 +29,7 @@ def process(content):
 
     gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 
-    faces = cascade.detectMultiScale(image, 1.01, 20, minSize=(10, 10))
+    faces = cascade.detectMultiScale(image, 1.03, 20, minSize=(10, 10))
 
     if(len(faces) <= 0):
         return []
