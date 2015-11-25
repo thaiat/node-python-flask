@@ -32,13 +32,13 @@ def process(content):
 
     gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 
-    faces = cascade.detectMultiScale(image, 1.03, 20, minSize=(10, 10))
+    faces = cascade.detectMultiScale(image, 1.03, 500, minSize=(10, 10))
 
     if(len(faces) <= 0):
         return []
 
     rects = np.array([[x, y, x + w, y + h] for (x, y, w, h) in faces])
-    pick = non_max_suppression(rects, probs=None, overlapThresh=0.65)
+    pick = non_max_suppression(rects, probs=None, overlapThresh=0.15)
 
     good = []
     for (x, y, x2, y2) in pick:

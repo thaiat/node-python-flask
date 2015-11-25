@@ -46,7 +46,7 @@ def process(content):
             {'x': x*1, 'y': y*1, 'width': (x2-x)*1, 'height': (y2-y)*1})
 
     # for f in good:
-    #    cv2.rectangle(
+    #   cv2.rectangle(
     #        image,
     #        (f.get('x'), f.get('y')),
     #        (f.get('width'), f.get('height')),
