@@ -38,7 +38,7 @@ def process(content):
         return []
 
     rects = np.array([[x, y, x + w, y + h] for (x, y, w, h) in faces])
-    pick = non_max_suppression(rects, probs=None, overlapThresh=0.65)
+    pick = non_max_suppression(rects, probs=None, overlapThresh=0.15)
 
     good = []
     for (x, y, x2, y2) in pick:
