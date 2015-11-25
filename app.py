@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request, jsonify
 import logging
-import video
+import video2
 import datetime
 
 
@@ -24,7 +24,7 @@ def videos_process():
     jsonBody = request.get_json(silent=True)
     content = jsonBody.get('content')
 
-    caras = video.process(content)
+    caras = video2.process(content)
 
     app.logger.info('[INFO] Detection: {0}ms, {1}'.format(
         (datetime.datetime.now() - start).total_seconds()*1000, caras))
