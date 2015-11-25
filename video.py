@@ -10,8 +10,11 @@ IMAGE_PADDING = 10
 MATCH_THRESHOLD = 400
 orb = cv2.ORB(1000, 1.2)
 bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
-cascade = cv2.CascadeClassifier('classifier/fifa.xml')
-reference = cv2.imread('images/fifaref2.jpg')
+#cascade = cv2.CascadeClassifier('classifier/fifa.xml')
+#reference = cv2.imread('images/fifaref2.jpg')
+cascade = cv2.CascadeClassifier('classifier/swbattlefront.xml')
+reference = cv2.imread('images/swbattlefront.jpg')
+
 reference = cv2.cvtColor(reference, cv2.COLOR_RGB2GRAY)
 ratio = IMAGE_SIZE/reference.shape[1]
 reference = cv2.resize(
