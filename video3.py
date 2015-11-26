@@ -36,11 +36,11 @@ def process(content, app):
 
     if(len(faces) <= 0):
         return []
-    app.logger.info('faces {1}'.format(len(faces)))
+    app.logger.info('faces {0}'.format(len(faces)))
 
     rects = np.array([[x, y, x + w, y + h] for (x, y, w, h) in faces])
     pick = non_max_suppression(rects, probs=None, overlapThresh=0.15)
-    app.logger.info('pick {1}'.format(len(pick)))
+    app.logger.info('pick {0}'.format(len(pick)))
 
     good = []
     for (x, y, x2, y2) in pick:
@@ -58,7 +58,7 @@ def process(content, app):
 
         # match descriptors
         matches = bf.match(des_r, des_o)
-        app.logger.info('matches {1}'.format(len(matches)))
+        app.logger.info('matches {0}'.format(len(matches)))
         if(len(matches) >= MATCH_THRESHOLD):
             good.append(
                 {'x': x*1, 'y': y*1, 'width': (x2-x)*1, 'height': (y2-y)*1})
@@ -70,5 +70,5 @@ def process(content, app):
     #        (f.get('width'), f.get('height')),
     #        (0, 255, 0), 6)
     #    cv2.imwrite('image.jpg', image)
-    app.logger.info('good {1}'.format(len(good)))
+    app.logger.info('good {0}'.format(len(good)))
     return good
