@@ -7,7 +7,7 @@ from imutils.object_detection import non_max_suppression
 
 IMAGE_SIZE = 80.0
 IMAGE_PADDING = 5
-MATCH_THRESHOLD = 100
+MATCH_THRESHOLD = 20
 orb = cv2.ORB(1000, 1.2)
 bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
 #cascade = cv2.CascadeClassifier('classifier/fifa.xml')
