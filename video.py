@@ -58,8 +58,13 @@ def process(content, app):
         matches = bf.match(des_r, des_o)
 
         if(len(matches) >= MATCH_THRESHOLD):
-            good.append(
-                {'x': x*1, 'y': y*1, 'width': (x2-x)*1, 'height': (y2-y)*1})
+            good.append({
+                'x': x*1,
+                'y': y*1,
+                'width': (x2-x)*1,
+                'height': (y2-y)*1,
+                'label': 'battlefront'
+            })
 
     # for f in good:
     #    cv2.rectangle(
