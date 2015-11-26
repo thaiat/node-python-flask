@@ -7,7 +7,7 @@ from imutils.object_detection import non_max_suppression
 
 IMAGE_SIZE = 80.0
 IMAGE_PADDING = 5
-MATCH_THRESHOLD = 20
+MATCH_THRESHOLD = 15
 orb = cv2.ORB(1000, 1.2)
 bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
 #cascade = cv2.CascadeClassifier('classifier/fifa.xml')
@@ -32,7 +32,7 @@ def process(content, app):
 
     gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 
-    faces = cascade.detectMultiScale(image, 1.03, 20, minSize=(10, 10))
+    faces = cascade.detectMultiScale(image, 1.03, 10, minSize=(15, 15))
 
     if(len(faces) <= 0):
         return []
