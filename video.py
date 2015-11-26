@@ -22,7 +22,7 @@ reference = cv2.resize(
 kp_r, des_r = orb.detectAndCompute(reference, None)
 
 
-def process(content):
+def process(content, app):
     if not isinstance(content, unicode):
         return []
     image_data = re.sub('^data:image/.+;base64,', '', content).decode('base64')
