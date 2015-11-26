@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request, jsonify
 import logging
-import video3 as video
+import video as video
 import datetime
 
 
